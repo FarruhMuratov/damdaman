@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Tour Marketplace</title>
     
     <!-- Подключение Tailwind CSS -->
@@ -16,6 +16,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
             background-color: #ffffff;
+            -webkit-tap-highlight-color: transparent; /* Убирает подсветку при тапе на iOS */
         }
 
         /* Кастомные стили для скроллбара и эффекта нажатия */
@@ -42,24 +43,22 @@
     <!-- Основной контейнер с отступами -->
     <div class="p-4 space-y-6">
 
-        <!-- 1. Город пользователя -->
+        <!-- Статические блоки (верхняя часть) -->
         <div class="flex items-center space-x-1 clickable">
             <span class="text-xs font-medium">Ташкент</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
         </div>
 
-        <!-- 2. Поисковый бар и избранное -->
         <div class="flex items-center space-x-3">
             <div class="flex-grow h-10 flex items-center bg-[#efefef] rounded-xl px-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="text" placeholder="Искать туры и впечатления" class="bg-transparent w-full h-full ml-2 text-sm focus:outline-none">
+                <i data-lucide="search" class="text-gray-500"></i>
+                <input type="text" placeholder="Искать туры и впечатления" class="bg-transparent w-full h-full ml-2 text-sm focus:outline-none placeholder-gray-500">
             </div>
             <div class="p-2 clickable">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                 <i data-lucide="heart"></i>
             </div>
         </div>
 
-        <!-- 3. Иконки типов туров (горизонтальный скролл) -->
         <div class="overflow-x-auto no-scrollbar">
             <div class="flex space-x-5">
                 <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
@@ -74,112 +73,26 @@
                     <div class="w-14 h-14 bg-[#efefef] rounded-2xl flex items-center justify-center"><i data-lucide="utensils"></i></div>
                     <span class="text-xs">Гастро</span>
                 </div>
-                <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
+                 <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
                     <div class="w-14 h-14 bg-[#efefef] rounded-2xl flex items-center justify-center"><i data-lucide="bike"></i></div>
                     <span class="text-xs">Актив</span>
                 </div>
-                <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                    <div class="w-14 h-14 bg-[#efefef] rounded-2xl flex items-center justify-center"><i data-lucide="ship"></i></div>
-                    <span class="text-xs">Вода</span>
-                </div>
-                <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                    <div class="w-14 h-14 bg-[#efefef] rounded-2xl flex items-center justify-center"><i data-lucide="tent"></i></div>
-                    <span class="text-xs">Кемпинг</span>
-                </div>
             </div>
         </div>
 
-        <!-- 4. Список туров -->
+        <!-- ДИНАМИЧЕСКИЙ БЛОК ТУРОВ -->
         <div class="space-y-4">
-            <h2 class="text-xl font-bold">Популярное</h2>
-            <!-- Карточка тура 1 -->
-            <div class="bg-white rounded-2xl overflow-hidden relative clickable">
-                <img src="https://placehold.co/600x400/a7c957/white?text=Тур+1" alt="Тур в горы" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <h3 class="font-semibold">Кеттик - Навесной мост + Зиплайн</h3>
-                    <p class="text-sm text-gray-600">Пеший | 1 день | Легкий</p>
-                    <p class="text-base font-bold mt-1">1490 сом</p>
-                </div>
-                <div class="absolute top-2 right-2 bg-white/70 p-1.5 rounded-full"><i data-lucide="bookmark" class="w-4 h-4"></i></div>
-            </div>
-            <!-- Карточка тура 2 -->
-            <div class="bg-white rounded-2xl overflow-hidden relative clickable">
-                <img src="https://placehold.co/600x400/6a994e/white?text=Тур+2" alt="Тур в Ала-Арча" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <h3 class="font-semibold">Ала-Арча - тур на пол дня</h3>
-                    <p class="text-sm text-gray-600">Пеший | 0.5 дня | Легкий</p>
-                    <p class="text-base font-bold mt-1">990 сом</p>
-                </div>
-                <div class="absolute top-2 right-2 bg-white/70 p-1.5 rounded-full"><i data-lucide="bookmark" class="w-4 h-4"></i></div>
-            </div>
-        </div>
-        
-        <!-- 5. Блок "Турагенты" -->
-        <div class="space-y-3">
-            <h2 class="text-xl font-bold">Турагенты</h2>
-            <div class="overflow-x-auto no-scrollbar">
-                <div class="flex space-x-4">
-                    <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                        <img src="https://placehold.co/100x100/f2e8cf/344e41?text=A1" class="w-16 h-16 rounded-full object-cover">
-                        <span class="text-xs">TravelCo</span>
-                    </div>
-                    <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                        <img src="https://placehold.co/100x100/a3b18a/344e41?text=A2" class="w-16 h-16 rounded-full object-cover">
-                        <span class="text-xs">AdvenTour</span>
-                    </div>
-                    <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                        <img src="https://placehold.co/100x100/588157/f2e8cf?text=A3" class="w-16 h-16 rounded-full object-cover">
-                        <span class="text-xs">Explore.uz</span>
-                    </div>
-                    <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                        <img src="https://placehold.co/100x100/3a5a40/f2e8cf?text=A4" class="w-16 h-16 rounded-full object-cover">
-                        <span class="text-xs">Silk Road</span>
-                    </div>
-                    <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                        <img src="https://placehold.co/100x100/344e41/f2e8cf?text=A5" class="w-16 h-16 rounded-full object-cover">
-                        <span class="text-xs">Asia Tour</span>
-                    </div>
+            <h2 class="text-xl font-bold">Все туры</h2>
+            <!-- Сюда будут загружаться туры из Airtable -->
+            <div id="tours-container" class="space-y-4">
+                <!-- Индикатор загрузки -->
+                <div id="loader" class="text-center py-10">
+                    <p class="text-gray-500">Загрузка туров...</p>
                 </div>
             </div>
         </div>
 
-        <!-- 6. Список туров (еще один) -->
-        <div class="space-y-4">
-             <h2 class="text-xl font-bold">Новые</h2>
-             <!-- Карточка тура 3 -->
-            <div class="bg-white rounded-2xl overflow-hidden relative clickable">
-                <img src="https://placehold.co/600x400/3a5a40/white?text=Тур+3" alt="Тур в Алматы" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <h3 class="font-semibold">Алматы - 1 день</h3>
-                    <p class="text-sm text-gray-600">Пеший | 1 день | Легкий</p>
-                    <p class="text-base font-bold mt-1">2500 сом</p>
-                </div>
-                <div class="absolute top-2 right-2 bg-white/70 p-1.5 rounded-full"><i data-lucide="bookmark" class="w-4 h-4"></i></div>
-            </div>
-        </div>
-        
-        <!-- 7. Блок "Люди" -->
-        <div class="space-y-3">
-            <h2 class="text-xl font-bold">Люди</h2>
-            <div class="overflow-x-auto no-scrollbar">
-                <div class="flex space-x-4">
-                    <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                        <img src="https://placehold.co/100x100/fca311/14213d?text=U1" class="w-16 h-16 rounded-full object-cover">
-                        <span class="text-xs">Анна</span>
-                    </div>
-                    <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                        <img src="https://placehold.co/100x100/e5e5e5/14213d?text=U2" class="w-16 h-16 rounded-full object-cover">
-                        <span class="text-xs">Максим</span>
-                    </div>
-                     <div class="flex flex-col items-center space-y-2 flex-shrink-0 clickable">
-                        <img src="https://placehold.co/100x100/14213d/ffffff?text=U3" class="w-16 h-16 rounded-full object-cover">
-                        <span class="text-xs">Ольга</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 8. Блок "Скидки и не только" -->
+        <!-- Статические блоки (нижняя часть) -->
         <div class="space-y-3">
             <h2 class="text-xl font-bold">Скидки и не только</h2>
             <div class="overflow-x-auto no-scrollbar">
@@ -188,13 +101,9 @@
                         <h3 class="font-bold">Тур в подарок</h3>
                         <p class="text-xs">При бронировании двух</p>
                     </div>
-                    <div class="w-48 h-28 bg-[#efefef] rounded-2xl p-3 flex flex-col justify-between flex-shrink-0 clickable" style="background-color: #ffe5b4;">
+                    <div class="w-48 h-28 bg-[#ffe5b4] rounded-2xl p-3 flex flex-col justify-between flex-shrink-0 clickable">
                         <h3 class="font-bold">Скидка 20%</h3>
                         <p class="text-xs">На туры в Самарканд</p>
-                    </div>
-                     <div class="w-48 h-28 bg-[#efefef] rounded-2xl p-3 flex flex-col justify-between flex-shrink-0 clickable" style="background-color: #d4e09b;">
-                        <h3 class="font-bold">Раннее бронирование</h3>
-                        <p class="text-xs">Выгода до 30%</p>
                     </div>
                 </div>
             </div>
@@ -202,8 +111,8 @@
 
     </div>
 
-    <!-- 9. Футер с навигацией -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t border-gray-200 h-20 flex justify-around items-center">
+    <!-- Футер с навигацией -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t border-gray-200 h-20 flex justify-around items-center" style="padding-bottom: env(safe-area-inset-bottom);">
         <div class="flex flex-col items-center space-y-1 text-[#007bff] clickable">
             <i data-lucide="home" class="w-6 h-6"></i>
             <span class="text-xs font-semibold">Главная</span>
@@ -227,17 +136,87 @@
     </div>
 
     <script>
-        // Инициализация иконок Lucide
-        lucide.createIcons();
+        // ===============================================================
+        // НАСТРОЙКИ AIRTABLE: ВСТАВЬТЕ ВАШИ ДАННЫЕ СЮДА
+        // ===============================================================
+        const PERSONAL_ACCESS_TOKEN = 'patWTBmqxVKjPqXSa'; // Начинается с 'pat...'
+        const BASE_ID = 'app7Im7rs4cSBVxso'; // Начинается с 'app...'
+        const TABLE_NAME = 'Туры'; // Убедитесь, что название точное
+        // ===============================================================
 
-        // Добавление класса clickable ко всем интерактивным элементам для анимации
-        document.addEventListener('DOMContentLoaded', () => {
-            const interactiveElements = document.querySelectorAll('button, a, [class*="clickable"]');
-            interactiveElements.forEach(el => {
-                if (!el.classList.contains('clickable')) {
-                    el.classList.add('clickable');
+        // Функция для загрузки и отображения туров
+        async function fetchAndRenderTours() {
+            const toursContainer = document.getElementById('tours-container');
+            const loader = document.getElementById('loader');
+            
+            // Проверка, что ключи были введены
+            if (PERSONAL_ACCESS_TOKEN.startsWith('СЮДА')) {
+                toursContainer.innerHTML = `<p class="text-red-500 text-center">Ошибка: Введите ваши ключи Airtable в HTML-файле.</p>`;
+                return;
+            }
+
+            const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
+
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${PERSONAL_ACCESS_TOKEN}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Ошибка Airtable: ${response.statusText}`);
                 }
-            });
+
+                const data = await response.json();
+                const tours = data.records.map(record => {
+                    const fields = record.fields;
+                    // Проверяем, есть ли картинка, и берем URL первой
+                    const imageUrl = fields['Картинка'] && fields['Картинка'][0] 
+                        ? fields['Картинка'][0].url 
+                        : 'https://placehold.co/600x400/efefef/999?text=Нет+фото';
+                    
+                    return {
+                        name: fields['Название'] || 'Без названия',
+                        description: fields['Описание'] || '',
+                        price: fields['Цена'] || 0,
+                        imageUrl: imageUrl
+                    };
+                });
+                
+                // Очищаем контейнер и убираем лоадер
+                toursContainer.innerHTML = '';
+
+                // Отрисовываем каждую карточку
+                tours.forEach(tour => {
+                    const tourCard = `
+                        <div class="bg-white rounded-2xl overflow-hidden relative clickable border border-gray-100">
+                            <img src="${tour.imageUrl}" alt="${tour.name}" class="w-full h-32 object-cover">
+                            <div class="p-3">
+                                <h3 class="font-semibold">${tour.name}</h3>
+                                <p class="text-sm text-gray-600">${tour.description}</p>
+                                <p class="text-base font-bold mt-1">${tour.price} сом</p>
+                            </div>
+                            <div class="absolute top-2 right-2 bg-white/70 p-1.5 rounded-full"><i data-lucide="bookmark" class="w-4 h-4"></i></div>
+                        </div>
+                    `;
+                    toursContainer.innerHTML += tourCard;
+                });
+
+            } catch (error) {
+                console.error('Не удалось загрузить туры:', error);
+                toursContainer.innerHTML = `<p class="text-red-500 text-center">Не удалось загрузить туры. Проверьте консоль для деталей.</p>`;
+            } finally {
+                // Инициализируем иконки после добавления новых элементов
+                lucide.createIcons();
+            }
+        }
+
+        // Запускаем всё при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAndRenderTours();
+            // Статическая инициализация иконок для элементов, которые есть сразу
+            lucide.createIcons();
         });
     </script>
 </body>
