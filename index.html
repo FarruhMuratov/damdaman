@@ -230,25 +230,57 @@
             <h2 class="text-lg font-bold">Познакомьтесь с гидами</h2>
             <div class="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
                 <!-- Guide Avatar -->
-                <div class="flex-shrink-0 text-center space-y-2 clickable">
-                    <img src="https://placehold.co/150x150/c084fc/ffffff?text=Анна" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
-                    <p class="text-sm font-semibold">Анна</p>
-                    <p class="text-xs text-gray-500">Ташкент, ⭐ 4.9</p>
+                <div class="flex-shrink-0 text-center space-y-1.5 clickable">
+                    <div class="relative w-20 mx-auto">
+                        <img src="https://placehold.co/150x150/c084fc/ffffff?text=Анна" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
+                        <div class="absolute top-1 -right-2 flex items-center space-x-0.5 bg-white/80 backdrop-blur-sm rounded-full px-1.5 py-0.5 text-[11px] border border-gray-200/50">
+                            <i data-lucide="star" class="w-2.5 h-2.5 text-yellow-500 fill-current"></i>
+                            <span class="font-semibold">4.9</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold">Анна</p>
+                        <p class="text-xs text-gray-500">Ташкент</p>
+                    </div>
                 </div>
-                <div class="flex-shrink-0 text-center space-y-2 clickable">
-                    <img src="https://placehold.co/150x150/818cf8/ffffff?text=Тимур" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
-                    <p class="text-sm font-semibold">Тимур</p>
-                    <p class="text-xs text-gray-500">Бухара, ⭐ 5.0</p>
+                <div class="flex-shrink-0 text-center space-y-1.5 clickable">
+                    <div class="relative w-20 mx-auto">
+                        <img src="https://placehold.co/150x150/818cf8/ffffff?text=Тимур" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
+                        <div class="absolute top-1 -right-2 flex items-center space-x-0.5 bg-white/80 backdrop-blur-sm rounded-full px-1.5 py-0.5 text-[11px] border border-gray-200/50">
+                            <i data-lucide="star" class="w-2.5 h-2.5 text-yellow-500 fill-current"></i>
+                            <span class="font-semibold">5.0</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold">Тимур</p>
+                        <p class="text-xs text-gray-500">Бухара</p>
+                    </div>
                 </div>
-                <div class="flex-shrink-0 text-center space-y-2 clickable">
-                    <img src="https://placehold.co/150x150/f472b6/ffffff?text=София" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
-                    <p class="text-sm font-semibold">София</p>
-                    <p class="text-xs text-gray-500">Хива, ⭐ 4.8</p>
+                <div class="flex-shrink-0 text-center space-y-1.5 clickable">
+                    <div class="relative w-20 mx-auto">
+                        <img src="https://placehold.co/150x150/f472b6/ffffff?text=София" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
+                        <div class="absolute top-1 -right-2 flex items-center space-x-0.5 bg-white/80 backdrop-blur-sm rounded-full px-1.5 py-0.5 text-[11px] border border-gray-200/50">
+                            <i data-lucide="star" class="w-2.5 h-2.5 text-yellow-500 fill-current"></i>
+                            <span class="font-semibold">4.8</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold">София</p>
+                        <p class="text-xs text-gray-500">Хива</p>
+                    </div>
                 </div>
-                 <div class="flex-shrink-0 text-center space-y-2 clickable">
-                    <img src="https://placehold.co/150x150/22d3ee/ffffff?text=Руслан" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
-                    <p class="text-sm font-semibold">Руслан</p>
-                    <p class="text-xs text-gray-500">Самарканд, ⭐ 4.9</p>
+                 <div class="flex-shrink-0 text-center space-y-1.5 clickable">
+                    <div class="relative w-20 mx-auto">
+                        <img src="https://placehold.co/150x150/22d3ee/ffffff?text=Руслан" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
+                        <div class="absolute top-1 -right-2 flex items-center space-x-0.5 bg-white/80 backdrop-blur-sm rounded-full px-1.5 py-0.5 text-[11px] border border-gray-200/50">
+                            <i data-lucide="star" class="w-2.5 h-2.5 text-yellow-500 fill-current"></i>
+                            <span class="font-semibold">4.9</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold">Руслан</p>
+                        <p class="text-xs text-gray-500">Самарканд</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -288,12 +320,39 @@
     <!-- ===================================================================== -->
     <div id="details-screen" class="screen bg-white">
         <!-- 2.1. Navigation & 2.2. Image Gallery -->
-        <div class="relative">
-             <div class="absolute top-4 left-4 z-10 bg-white/70 backdrop-blur-sm rounded-full p-2 clickable back-button" data-target="main-screen">
-                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+        <div class="relative w-full">
+            <!-- Media Scroller with 16:9 aspect ratio -->
+            <div id="media-scroller" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar aspect-video bg-black">
+                <!-- Video Item (YouTube Shorts) -->
+                <div id="video-preview" class="flex-shrink-0 w-full snap-center relative flex items-center justify-center bg-black overflow-hidden">
+                    <iframe
+                        class="w-full h-full"
+                        src="https://www.youtube.com/embed/yiP0D8m2ejE?playlist=FT3s5T4gjvA&autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <!-- Image Items -->
+                <div class="flex-shrink-0 w-full snap-center flex items-center justify-center">
+                     <img src="https://placehold.co/800x450/a3e635/ffffff?text=Фото+1+(16:9)" alt="Фото тура 1" class="w-full h-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 w-full snap-center flex items-center justify-center">
+                     <img src="https://placehold.co/800x450/60a5fa/ffffff?text=Фото+2+(16:9)" alt="Фото тура 2" class="w-full h-auto object-contain">
+                </div>
             </div>
-            <!-- Simple image, can be replaced with a slider -->
-            <img src="https://placehold.co/600x400/a3e635/ffffff?text=Горы" alt="Тур в горы" class="w-full h-64 object-cover">
+
+            <!-- Pagination Dots -->
+            <div id="pagination-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+                <button class="w-2 h-2 rounded-full bg-white transition-all duration-300"></button>
+                <button class="w-2 h-2 rounded-full bg-white/50 transition-all duration-300"></button>
+                <button class="w-2 h-2 rounded-full bg-white/50 transition-all duration-300"></button>
+            </div>
+
+             <div class="absolute bottom-4 left-4 z-20 bg-black/50 backdrop-blur-sm rounded-full p-2 clickable back-button" data-target="main-screen">
+                <i data-lucide="arrow-left" class="w-6 h-6 text-white"></i>
+            </div>
         </div>
 
         <div class="p-4 space-y-5 pb-24">
@@ -323,7 +382,7 @@
             <section class="space-y-2">
                 <h2 class="text-lg font-bold">Описание</h2>
                 <p class="text-sm text-gray-700 leading-relaxed">
-                    Откройте для себя величие Тянь-Шаньских гор в этом незабываемом трехдневном походе. Мы поднимемся на вершину Большого Чимгана, откуда открываются захватывающие панорамы, и посетим загадочное плато Пулатхан, овеянное легендами. Тур подходит для людей с хорошей физической подготовкой. Ночевки в палатках под звездным небом, еда на костре и компания единомышленников гарантированы.
+                    Откройте для себя величие Тянь-Шаньских гор в этом незабываемом трехдневном походе. Мы поднимем на вершину Большого Чимгана, откуда открываются захватывающие панорамы, и посетим загадочное плато Пулатхан, овеянное легендами. Тур подходит для людей с хорошей физической подготовкой. Ночевки в палатках под звездным небом, еда на костре и компания единомышленников гарантированы.
                 </p>
             </section>
         </div>
@@ -417,6 +476,16 @@
         </div>
     </div>
 
+    <!-- Video Modal Player -->
+    <div id="video-modal" class="fixed inset-0 bg-black z-50 hidden items-center justify-center">
+        <video id="modal-video-player" class="w-full h-full object-cover" controls>
+             <source src="https://assets.mixkit.co/videos/preview/mixkit-womans-feet-splashing-in-the-pool-1264-small.mp4" type="video/mp4">
+        </video>
+        <button id="close-video-modal" class="absolute top-5 right-5 text-white bg-black/50 rounded-full p-2 z-10">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+    </div>
+
     <!-- ===================================================================== -->
     <!-- ======================= FOOTER NAVIGATION =========================== -->
     <!-- ===================================================================== -->
@@ -461,7 +530,9 @@
                     activeScreen.classList.add('active');
                     window.scrollTo(0, 0); // Scroll to top on screen change
                     // Show/hide footer based on the screen
-                    footerNav.style.display = (screenId === 'main-screen') ? 'flex' : 'none';
+                    if (footerNav) {
+                       footerNav.style.display = (screenId === 'main-screen') ? 'flex' : 'none';
+                    }
                 }
             };
 
@@ -476,9 +547,12 @@
             });
 
             // Event listener for the "Book Now" button
-            document.getElementById('book-now-button').addEventListener('click', () => {
-                showScreen('payment-screen');
-            });
+            const bookNowButton = document.getElementById('book-now-button');
+            if(bookNowButton) {
+                bookNowButton.addEventListener('click', () => {
+                    showScreen('payment-screen');
+                });
+            }
 
             // Event listeners for all "Back" buttons
             document.querySelectorAll('.back-button').forEach(button => {
@@ -505,6 +579,87 @@
 
             // --- Initial Setup ---
             showScreen('main-screen'); // Show the main screen by default
+
+            // --- Video Modal Logic ---
+            const videoModal = document.getElementById('video-modal');
+            const videoPreviewContainer = document.getElementById('video-preview');
+            const closeVideoModal = document.getElementById('close-video-modal');
+            const modalVideoPlayer = document.getElementById('modal-video-player');
+            const previewVideos = videoPreviewContainer ? videoPreviewContainer.querySelectorAll('video') : [];
+
+            const stopModalVideo = () => {
+                if (videoModal && modalVideoPlayer) {
+                    videoModal.classList.add('hidden');
+                    videoModal.classList.remove('flex');
+                    modalVideoPlayer.pause();
+                    modalVideoPlayer.currentTime = 0;
+                    // Restart preview videos
+                    previewVideos.forEach(v => v.play().catch(e => { /* Ignore preview play error */ }));
+                }
+            };
+
+            if (videoPreviewContainer) {
+                videoPreviewContainer.addEventListener('click', () => {
+                    // Pause preview videos before opening modal
+                    previewVideos.forEach(v => v.pause());
+                    
+                    if (videoModal && modalVideoPlayer) {
+                        videoModal.classList.remove('hidden');
+                        videoModal.classList.add('flex');
+                        
+                        // Set a slight delay to ensure the element is ready
+                        setTimeout(() => {
+                            const playPromise = modalVideoPlayer.play();
+                            if (playPromise !== undefined) {
+                                playPromise.catch(error => {
+                                    // This error is often benign, happening if the user closes the modal quickly.
+                                    if (error.name !== 'AbortError') {
+                                        console.error("Video playback failed:", error);
+                                    }
+                                });
+                            }
+                        }, 50);
+                    }
+                });
+            }
+
+            if (closeVideoModal) {
+                closeVideoModal.addEventListener('click', stopModalVideo);
+            }
+
+            if (videoModal) {
+                videoModal.addEventListener('click', (e) => {
+                    if (e.target === videoModal) {
+                        stopModalVideo();
+                    }
+                });
+            }
+
+            // --- Media Scroller Pagination ---
+            const mediaScroller = document.getElementById('media-scroller');
+            const paginationDotsContainer = document.getElementById('pagination-dots');
+
+            if (mediaScroller && paginationDotsContainer) {
+                const dots = paginationDotsContainer.children;
+                
+                mediaScroller.addEventListener('scroll', () => {
+                    const scrollLeft = mediaScroller.scrollLeft;
+                    const slideWidth = mediaScroller.clientWidth;
+                    const activeIndex = Math.round(scrollLeft / slideWidth);
+
+                    for (let i = 0; i < dots.length; i++) {
+                        if (dots[i]) {
+                           if (i === activeIndex) {
+                                dots[i].classList.add('bg-white');
+                                dots[i].classList.remove('bg-white/50');
+                            } else {
+                                dots[i].classList.remove('bg-white');
+                                dots[i].classList.add('bg-white/50');
+                            }
+                        }
+                    }
+                }, { passive: true });
+            }
         });
     </script>
 </body>
