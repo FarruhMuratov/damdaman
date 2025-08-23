@@ -6,6 +6,16 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Подробная диагностика переменных окружения
+console.log('🔍 Диагностика переменных окружения:');
+console.log('DATABASE_URL:', process.env.DATABASE_URL ? '✅ НАЙДЕН' : '❌ НЕ НАЙДЕН');
+console.log('DATABASE_PUBLIC_URL:', process.env.DATABASE_PUBLIC_URL ? '✅ НАЙДЕН' : '❌ НЕ НАЙДЕН');
+console.log('PORT:', process.env.PORT || '3000 (по умолчанию)');
+console.log('NODE_ENV:', process.env.NODE_ENV || 'не задан');
+console.log('RAILWAY_ENVIRONMENT:', process.env.RAILWAY_ENVIRONMENT || 'не задан');
+console.log('RAILWAY_PROJECT_NAME:', process.env.RAILWAY_PROJECT_NAME || 'не задан');
+console.log('RAILWAY_SERVICE_NAME:', process.env.RAILWAY_SERVICE_NAME || 'не задан');
+
 // Получаем переменные окружения Railway
 const DATABASE_URL = process.env.DATABASE_URL || process.env.DATABASE_PUBLIC_URL;
 
@@ -22,6 +32,9 @@ if (!DATABASE_URL) {
     console.log('DATABASE_PUBLIC_URL:', process.env.DATABASE_PUBLIC_URL);
     console.log('PORT:', process.env.PORT);
     console.log('NODE_ENV:', process.env.NODE_ENV);
+    console.log('RAILWAY_ENVIRONMENT:', process.env.RAILWAY_ENVIRONMENT);
+    console.log('RAILWAY_PROJECT_NAME:', process.env.RAILWAY_PROJECT_NAME);
+    console.log('RAILWAY_SERVICE_NAME:', process.env.RAILWAY_SERVICE_NAME);
     
     // Не завершаем процесс, а показываем страницу с ошибкой
     app.get('/', (req, res) => {
@@ -60,6 +73,9 @@ if (!DATABASE_URL) {
                             <p><strong>DATABASE_PUBLIC_URL:</strong> ${process.env.DATABASE_PUBLIC_URL || 'не найден'}</p>
                             <p><strong>PORT:</strong> ${process.env.PORT || '3000 (по умолчанию)'}</p>
                             <p><strong>NODE_ENV:</strong> ${process.env.NODE_ENV || 'не задан'}</p>
+                            <p><strong>RAILWAY_ENVIRONMENT:</strong> ${process.env.RAILWAY_ENVIRONMENT || 'не задан'}</p>
+                            <p><strong>RAILWAY_PROJECT_NAME:</strong> ${process.env.RAILWAY_PROJECT_NAME || 'не задан'}</p>
+                            <p><strong>RAILWAY_SERVICE_NAME:</strong> ${process.env.RAILWAY_SERVICE_NAME || 'не задан'}</p>
                         </div>
                         
                         <h3 class="font-semibold mb-2 mt-4">🚀 Для Railway:</h3>
@@ -70,6 +86,17 @@ if (!DATABASE_URL) {
                         <div class="bg-gray-100 p-3 rounded text-sm font-mono">
                             postgresql://postgres:oQMszjqJQaeDysjolzVTEzoRUmUanlyo@shuttle.proxy.rlwy.net:36434/railway
                         </div>
+                        
+                        <h3 class="font-semibold mb-2 mt-4">🔍 Диагностика:</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Если переменная уже добавлена, проверьте:
+                        </p>
+                        <ul class="list-disc list-inside text-sm text-gray-600 mb-4">
+                            <li>Название переменной точно "DATABASE_URL" (без пробелов)</li>
+                            <li>Значение скопировано полностью</li>
+                            <li>Переменная добавлена в правильный сервис "damdaman"</li>
+                            <li>Переменная добавлена в правильное окружение "production"</li>
+                        </ul>
                     </div>
                 </div>
             </body>
@@ -96,7 +123,7 @@ const client = new Client({
 
 // Middleware
 app.use(express.json());
-app.use(express.static('.'); // Раздаем статические файлы
+app.use(express.static('.')); // Раздаем статические файлы
 
 // Маршрут для применения схемы
 app.post('/api/apply-schema', async (req, res) => {
@@ -196,6 +223,7 @@ app.get('/', (req, res) => {
                     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
                         <p><strong>✅ DATABASE_URL настроен!</strong></p>
                         <p>Сервер готов к работе с базой данных</p>
+                        <p class="text-sm mt-2">Значение: ${DATABASE_URL.substring(0, 50)}...</p>
                     </div>
                     
                     <h2 class="text-xl font-semibold mb-4">📊 Статус базы данных</h2>
@@ -237,7 +265,7 @@ app.get('/', (req, res) => {
                     } catch (error) {
                         document.getElementById('dbStatus').innerHTML = \`
                             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-                                ❌ Ошибка: \${data.error}
+                                ❌ Ошибка: \${error.message}
                             </div>
                         \`;
                     }
@@ -266,7 +294,7 @@ app.get('/', (req, res) => {
                             \`;
                         } else {
                             resultDiv.innerHTML = \`
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
                                     <h3 class="font-bold">❌ Ошибка:</h3>
                                     <p>\${data.error}</p>
                                 </div>
@@ -303,6 +331,9 @@ app.listen(PORT, () => {
     console.log(`🌐 Откройте http://localhost:${PORT} в браузере`);
     console.log(`📊 Статус БД: http://localhost:${PORT}/api/db-status`);
     console.log(`✅ DATABASE_URL найден: ${DATABASE_URL ? 'Да' : 'Нет'}`);
+    if (DATABASE_URL) {
+        console.log(`🔗 Подключение к: ${DATABASE_URL.substring(0, 50)}...`);
+    }
 });
 
 // Graceful shutdown
