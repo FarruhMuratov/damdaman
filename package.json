@@ -1,0 +1,18 @@
+{
+  "name": "damdaman-tour-platform",
+  "version": "1.0.0",
+  "description": "Туристическая платформа-маркетплейс",
+  "main": "server.js",
+  "scripts": {
+    "apply-schema": "node database/apply_schema.js",
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "pg": "^8.11.3",
+    "express": "^4.18.2"
+  },
+  "keywords": ["tourism", "marketplace", "railway", "postgresql"],
+  "author": "Damdaman Team",
+  "license": "MIT"
+}
