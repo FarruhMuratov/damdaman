@@ -9,10 +9,81 @@ const PORT = process.env.PORT || 3000;
 // Получаем переменные окружения Railway
 const DATABASE_URL = process.env.DATABASE_URL || process.env.DATABASE_PUBLIC_URL;
 
+// Если DATABASE_URL не найден, показываем понятную ошибку
 if (!DATABASE_URL) {
     console.error('❌ Ошибка: DATABASE_URL не найден в переменных окружения');
-    console.log('Убедитесь, что вы находитесь в связанном Railway проекте');
-    process.exit(1);
+    console.log('🔧 Решение:');
+    console.log('1. Убедитесь, что вы в связанном Railway проекте');
+    console.log('2. Добавьте DATABASE_URL в переменные окружения сервиса damdaman');
+    console.log('3. Или используйте локальный .env файл');
+    console.log('');
+    console.log('📊 Текущие переменные окружения:');
+    console.log('DATABASE_URL:', process.env.DATABASE_URL);
+    console.log('DATABASE_PUBLIC_URL:', process.env.DATABASE_PUBLIC_URL);
+    console.log('PORT:', process.env.PORT);
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+    
+    // Не завершаем процесс, а показываем страницу с ошибкой
+    app.get('/', (req, res) => {
+        res.send(`
+            <!DOCTYPE html>
+            <html lang="ru">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Damdaman Tour Platform - Ошибка конфигурации</title>
+                <script src="https://cdn.tailwindcss.com"></script>
+            </head>
+            <body class="bg-gray-100 min-h-screen">
+                <div class="container mx-auto px-4 py-8">
+                    <h1 class="text-3xl font-bold text-center mb-8 text-red-600">
+                        🚨 Ошибка конфигурации
+                    </h1>
+                    
+                    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-semibold mb-4 text-red-600">❌ DATABASE_URL не найден</h2>
+                        
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                            <p><strong>Проблема:</strong> Сервер не может подключиться к базе данных</p>
+                        </div>
+                        
+                        <h3 class="font-semibold mb-2">🔧 Решение:</h3>
+                        <ol class="list-decimal list-inside space-y-2 mb-4">
+                            <li>Убедитесь, что вы в связанном Railway проекте</li>
+                            <li>Добавьте DATABASE_URL в переменные окружения сервиса damdaman</li>
+                            <li>Или используйте локальный .env файл</li>
+                        </ol>
+                        
+                        <h3 class="font-semibold mb-2">📊 Текущие переменные:</h3>
+                        <div class="bg-gray-100 p-3 rounded text-sm">
+                            <p><strong>DATABASE_URL:</strong> ${process.env.DATABASE_URL || 'не найден'}</p>
+                            <p><strong>DATABASE_PUBLIC_URL:</strong> ${process.env.DATABASE_PUBLIC_URL || 'не найден'}</p>
+                            <p><strong>PORT:</strong> ${process.env.PORT || '3000 (по умолчанию)'}</p>
+                            <p><strong>NODE_ENV:</strong> ${process.env.NODE_ENV || 'не задан'}</p>
+                        </div>
+                        
+                        <h3 class="font-semibold mb-2 mt-4">🚀 Для Railway:</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            В Railway Dashboard перейдите в сервис "damdaman" → "Variables" 
+                            и добавьте переменную DATABASE_URL со значением:
+                        </p>
+                        <div class="bg-gray-100 p-3 rounded text-sm font-mono">
+                            postgresql://postgres:oQMszjqJQaeDysjolzVTEzoRUmUanlyo@shuttle.proxy.rlwy.net:36434/railway
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `);
+    });
+    
+    app.listen(PORT, () => {
+        console.log(`🚀 Сервер запущен на порту ${PORT}`);
+        console.log(`🌐 Откройте http://localhost:${PORT} в браузере`);
+        console.log(`❌ Но DATABASE_URL не настроен - подключение к БД невозможно`);
+    });
+    
+    return;
 }
 
 // Создаем клиент PostgreSQL
@@ -25,7 +96,7 @@ const client = new Client({
 
 // Middleware
 app.use(express.json());
-app.use(express.static('.')); // Раздаем статические файлы
+app.use(express.static('.'); // Раздаем статические файлы
 
 // Маршрут для применения схемы
 app.post('/api/apply-schema', async (req, res) => {
@@ -122,6 +193,11 @@ app.get('/', (req, res) => {
                 </h1>
                 
                 <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                        <p><strong>✅ DATABASE_URL настроен!</strong></p>
+                        <p>Сервер готов к работе с базой данных</p>
+                    </div>
+                    
                     <h2 class="text-xl font-semibold mb-4">📊 Статус базы данных</h2>
                     <div id="dbStatus" class="mb-6">
                         <p class="text-gray-600">Проверяем подключение...</p>
@@ -161,7 +237,7 @@ app.get('/', (req, res) => {
                     } catch (error) {
                         document.getElementById('dbStatus').innerHTML = \`
                             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-                                ❌ Ошибка: \${error.message}
+                                ❌ Ошибка: \${data.error}
                             </div>
                         \`;
                     }
@@ -226,6 +302,7 @@ app.listen(PORT, () => {
     console.log(`🚀 Сервер запущен на порту ${PORT}`);
     console.log(`🌐 Откройте http://localhost:${PORT} в браузере`);
     console.log(`📊 Статус БД: http://localhost:${PORT}/api/db-status`);
+    console.log(`✅ DATABASE_URL найден: ${DATABASE_URL ? 'Да' : 'Нет'}`);
 });
 
 // Graceful shutdown
